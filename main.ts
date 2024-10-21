@@ -4,6 +4,11 @@ const READ_DATA = 0x0f;
 const MCP_INCREMENTO = 0x04;
 const MCP_DECREMENTO = 0x08;
 
+
+/**
+ * Funciones para operar el modulo
+*/
+//%weight=10 block="MCP4131 potentiometer"
 namespace grovemcp4131{
     
 
