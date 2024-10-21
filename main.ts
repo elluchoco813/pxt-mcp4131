@@ -47,8 +47,20 @@ namespace grovemcp4131{
             pins.digitalWritePin(CSPIN, 1)     
         }
 
-        setVoltaje(voltaje:number){
+        setVoltaje(voltage:number): number{
             
+            let res2 = 1000 * ((voltage/10000)-1)
+
+            let res2Write = Math.round((res2*100000) / 128)
+
+            pins.digitalWritePin(CSPIN, 0)
+
+            pins.spiWrite(WRITE_DATA)
+            pins.spiWrite(res2Write)
+
+            pins.digitalWritePin(CSPIN, 1)
+
+            return res2
         }
 
         incremento(): number {
