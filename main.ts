@@ -5,9 +5,14 @@ const MCP_INCREMENTO = 0x04;
 const MCP_DECREMENTO = 0x08;
 
 namespace grovemcp4131{
+    
 
     //Pin CS de la microbit para comunicación spi   
     const CSPIN = DigitalPin.P16;
+    /**
+         * Create Grove - MCP4131
+        */
+    //% blockId=grove_ina_create block="Create MCP4131"
 
     export function createMCP(): MCP4131
     {
@@ -26,7 +31,11 @@ namespace grovemcp4131{
         constructor() {
             this.val = 64
         }
-
+        
+        /**
+         * Init Grove - MCP4131
+         */
+        //% blockId=grove_ina_init block="%mcp|Init Grove - MCP4131"
         init(){
             this.set(this.val)
 
@@ -47,6 +56,10 @@ namespace grovemcp4131{
             pins.digitalWritePin(CSPIN, 1)     
         }
 
+        //% blockID=grove_mcp_setvoltage block="%mcp|Ajustar Voltaje a %voltaje"
+        //% voltage.min=0 voltage.max=12 
+        //% blockSetVariable=res2
+        //% blockGap=8
         setVoltaje(voltage:number): number{
             
             let res2 = 1000 * ((voltage/10000)-1)
