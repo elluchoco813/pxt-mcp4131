@@ -14,6 +14,9 @@ namespace grovemcp4131{
 
     //Pin CS de la microbit para comunicación spi   
     const CSPIN = DigitalPin.P16;
+    const mosiPin = DigitalPin.P15;
+    const misoPin = DigitalPin.P14;
+    const sclkPin = DigitalPin.P13;
     /**
     * Create Grove - MCP4131
     */
@@ -43,6 +46,10 @@ namespace grovemcp4131{
         //% blockId=grove_mcp_init block="%mcp|Init Grove - MCP4131"
         init(): Boolean {
             this.set(this.val)
+
+            pins.spiFormat(7,3)
+            pins.spiPins(mosiPin, misoPin, sclkPin)
+
             return true
         }
 
@@ -67,7 +74,7 @@ namespace grovemcp4131{
         //% blockGap=8
         setVoltaje(voltage:number): number{
             
-            let res2 = 1800 * ((voltage/1.25)-1)
+            let res2:number = 1800 * ((voltage/1.25)-1)
 
             let res2Write = Math.round((res2*100000) / 128)
 
