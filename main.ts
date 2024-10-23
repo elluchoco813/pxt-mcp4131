@@ -15,9 +15,9 @@ namespace grovemcp4131{
     //Pin CS de la microbit para comunicación spi   
     const CSPIN = DigitalPin.P16;
     /**
-         * Create Grove - MCP4131
-        */
-    //% blockId=grove_ina_create block="Create MCP4131"
+    * Create Grove - MCP4131
+    */
+    //% blockId=grove_mcp_create block="Create MCP4131"
 
     export function createMCP(): MCP4131
     {
@@ -40,10 +40,10 @@ namespace grovemcp4131{
         /**
          * Init Grove - MCP4131
          */
-        //% blockId=grove_ina_init block="%mcp|Init Grove - MCP4131"
-        init(){
+        //% blockId=grove_mcp_init block="%mcp|Init Grove - MCP4131"
+        init(): Boolean {
             this.set(this.val)
-
+            return true
         }
 
         set(value:number){
@@ -78,7 +78,7 @@ namespace grovemcp4131{
 
             pins.digitalWritePin(CSPIN, 1)
 
-            return res2
+            return res2Write
         }
 
         incremento(): number {
