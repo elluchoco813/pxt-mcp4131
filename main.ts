@@ -67,7 +67,7 @@ namespace grovemcp4131{
         //% blockGap=8
         setVoltaje(voltage:number): number{
             
-            let res2 = 1000 * ((voltage/10000)-1)
+            let res2 = 1800 * ((voltage/1.25)-1)
 
             let res2Write = Math.round((res2*100000) / 128)
 
