@@ -45,10 +45,14 @@ namespace grovemcp4131{
          */
         //% blockId=grove_mcp_init block="%mcp|Init Grove - MCP4131"
         init(): Boolean {
-            this.set(this.val)
+            
 
-            pins.spiFormat(7,3)
+            pins.digitalWritePin(CSPIN, 1)
             pins.spiPins(mosiPin, misoPin, sclkPin)
+            pins.spiFormat(8, 3)
+            pins.spiFrequency(100000)
+
+            this.set(this.val)
 
             return true
         }
@@ -68,19 +72,19 @@ namespace grovemcp4131{
             pins.digitalWritePin(CSPIN, 1)     
         }
 
-        //% blockID=grove_mcp_setvoltage block="%mcp|Ajustar Voltaje a %voltaje"
+        //% blockID=grove_mcp_setvoltage block="%mcp|Ajustar Voltaje a %voltage"
         //% voltage.min=0 voltage.max=12 
         //% blockSetVariable=res2
         //% blockGap=8
         setVoltaje(voltage:number): number{
             
-            let res2:number = 1800 * ((voltage/1.25)-1)
+            let res2 = 1800 * ((voltage/1.25)-1)
 
-            let res2Write = Math.round((res2*100000) / 128)
+            let res2Write = Math.round((res2 * 127) / 100000)
 
             pins.digitalWritePin(CSPIN, 0)
 
-            pins.spiWrite(WRITE_DATA)
+            pins.spiWrite(0x00)
             pins.spiWrite(res2Write)
 
             pins.digitalWritePin(CSPIN, 1)
